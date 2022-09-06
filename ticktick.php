@@ -8,6 +8,7 @@ function login_dida365($username, $password) {
     $curlObj = CustomCurl::init('https://api.dida365.com/api/v2/user/signon?wc=true&remember=true', 'post')
                 ->set('postFields', ['username' => $username, 'password' => $password])
                 ->set('postType', 'json')
+                ->setHeader('X-Device', '{"platform":"web","os":"Windows 10","device":"Chrome 102.0.0.0","name":"","version":4226,"id":"628774331068e7035ea5950b","channel":"website","campaign":"","websocket":""}')
                 ->exec();
     if ($curlObj->getStatus()) {
         $data = json_decode($curlObj->getBody(), true);
